@@ -1,4 +1,4 @@
-package com.adivinhacao.jogo;
+package com.adivinhacao.jogo; //import
 
 import java.util.Random;
 import java.util.Scanner;
