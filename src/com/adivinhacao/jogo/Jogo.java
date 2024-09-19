@@ -29,13 +29,16 @@ public class Jogo {
 					break;
 				case 1:
 					int dificuldade = Utils.EscolherDificuldade();
-					boolean partida = Utils.Jogo(dificuldade);
+					int partida = Utils.Jogo(dificuldade);
 					
-					if (partida) {
+					if (partida == 1) {
 						jogador1.Ganhou();
 					}
-					else {
+					else if (partida == 0) {
 						jogador1.Perdeu();
+					}
+					else {
+						break;
 					}
 					break;
 				default:
@@ -96,17 +99,20 @@ public class Jogo {
 	}
 	
 	public class Utils{
+		
 		static void MenuInfo() {
 			System.out.println("1 -> Jogar");
 			System.out.println("2 -> Regras");
 			System.out.println("3 -> Pontuação");
 			System.out.println("4 -> Sair");
 		}
+		
 		static int MenuInput() {
 			Scanner scan = new Scanner(System.in);
 			int input = scan.nextInt();
 			return input;
 		}
+		
 		static int EscolherDificuldade() {
 			System.out.println("Selecione a dificuldade:");
 			System.out.println("1 -> Fácil");
@@ -116,6 +122,7 @@ public class Jogo {
 			int dificuldade = scan.nextInt();
 			return dificuldade;
 		}
+		
 		static void MostraRegras() {
 			System.out.println("O computador irá sortear um número aleatório e você deve advinhar.");
 			System.out.println("No nível de dificuldade 'Fácil' o jogo sortea um número de 0 a 5");
@@ -125,12 +132,14 @@ public class Jogo {
 			Scanner scan = new Scanner(System.in);
 			String x = scan.nextLine();
 		}
-		static boolean Jogo(int dificuldade) {
+		
+		static int Jogo(int dificuldade) {
 			Scanner scan = new Scanner(System.in);
 			Random random = new Random();
 			
 			int input = 0;
 			int numeroAleatorio = 0;
+			boolean difValida = true;
 			
 			switch (dificuldade) {
 				case 1:
@@ -150,19 +159,28 @@ public class Jogo {
 					break;
 				default:
 					System.out.println("Dificuldade inválida");
+					difValida = false;
 					break;
 			}
-			if (input == numeroAleatorio) {
-				System.out.println("Acertou!");
-				System.out.println("O número que eu pensei foi "+numeroAleatorio);
-				return true;
+			if (difValida) {
+				if (input == numeroAleatorio) {
+					System.out.println("Acertou!");
+					System.out.println("O número que eu pensei foi "+numeroAleatorio + "\n");
+					return 1;
+				}
+				else {
+					System.out.println("Errou!");
+					System.out.println("O número que eu pensei foi "+numeroAleatorio + "\n");
+					return 0;
+				}
 			}
 			else {
-				System.out.println("Errou!");
-				System.out.println("O número que eu pensei foi "+numeroAleatorio);
-				return false;
+				System.out.println("Jogo reiniciado");
+				return 2;
 			}
+			
 		}
+		
 	}
 	
 }
