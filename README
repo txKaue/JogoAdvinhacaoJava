@@ -1,0 +1,13 @@
+# 🚀 Jogo de Advinhação em JAVA
+
+## Um exercício de orientação a objetos em JAVA
+
+Esse projeto é um exercício sobre orientação a objetos em JAVA.
+Apesar de não conter todos os pilares da orientação a objeto, meu objetivo foi utilizar na prática a manipulação de objetos em um jogo simples
+
+### Objetivo do jogo
+
+- ✔️ O computador aleatoriamente seleciona um número.
+- ✔️ O jogador deve advinhar o número aleatório.
+- ✔️ O Jogador pode escolher a dificuldade do jogo.
+
